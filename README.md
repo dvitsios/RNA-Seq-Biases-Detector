@@ -2,21 +2,22 @@
 -----------------------------------------
 
 
-** Sample run (extended - in practice)**:
+* Sample run (extended - in practice):
 ```
 
 blastn -db Human_3p_Exons -query nt.fa -num_threads 8 -outfmt "7 qacc sacc qstart qend qseq length nident mismatch gaps evalue score" -out out.txt 
 
 ```
 
-** sample run (in practice) **:
+
+* Sample run (in practice):
 ```
 
 blastn -db Human_3p_Exons -query nt.fa -outfmt "7 qacc sacc qstart qend evalue" 
 
 ```
 
-** sample run (verbose) **:
+* Sample run (verbose):
 ```
 
 blastn -db Human_3p_Exons -query nt.fa -outfmt 6
@@ -24,14 +25,14 @@ blastn -db Human_3p_Exons -query nt.fa -outfmt 6
 ```
 
 
-** Make blastable database **:
+* Make blastable database:
 ```
 
 makeblastdb -in 3pExons.fa -dbtype nucl -title Human_3p_Exons -out db/Human_3p_Exons
 
 ```
 
-* get best hits only from blast output *:
+* Get best hits only from blast output *:
 ```
 
 sort -u -k1,1 --merge outTest.txt > outBestHits.txt
@@ -59,7 +60,7 @@ bsub -M 4096 -R "rusage[mem=4096]" -n 2 ./runBlastJob.pl
 
 ***
 
-1. RUN THE WHOLE BLAST PIPELINE:
+1. Run whole BLAST pipeline:
 ```
 ./run.pl data/c11.lane.clean.uniquified.fa  #for a single file
 ```
