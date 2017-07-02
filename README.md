@@ -1,9 +1,12 @@
-# Prepare reference database of sequences 
+# Prepare reference database of sequences
+-----------------------------------------
 
 
-** sample run (extended - in practice)**:
+** Sample run (extended - in practice)**:
 ```
+
 blastn -db Human_3p_Exons -query nt.fa -num_threads 8 -outfmt "7 qacc sacc qstart qend qseq length nident mismatch gaps evalue score" -out out.txt 
+
 ```
 
 ** sample run (in practice) **:
@@ -28,14 +31,14 @@ makeblastdb -in 3pExons.fa -dbtype nucl -title Human_3p_Exons -out db/Human_3p_E
 
 ```
 
-* get best hits only from blast output:
+* get best hits only from blast output *:
 ```
 
 sort -u -k1,1 --merge outTest.txt > outBestHits.txt
 ```
 
 
-
+***
 
 # Run
 ```
@@ -48,9 +51,11 @@ makeblastdb -in 3pExons.fa -dbtype nucl -title Human_3p_Exons -out db/Human_3p_E
 
 ./runBlastJob.pl
 
-# when using the cluster:
+```
+- When using the cluster:
+```
 bsub -M 4096 -R "rusage[mem=4096]" -n 2 ./runBlastJob.pl 
-
+```
 
 ***
 
@@ -59,7 +64,7 @@ bsub -M 4096 -R "rusage[mem=4096]" -n 2 ./runBlastJob.pl
 ./run.pl data/c11.lane.clean.uniquified.fa  #for a single file
 ```
 
-# or 
+*or* 
 ```
 ./run.pl data/  #for multiple files inside a folder
 ```
@@ -69,7 +74,7 @@ bsub -M 4096 -R "rusage[mem=4096]" -n 2 ./runBlastJob.pl
 ./runAnalysisPipeline.pl Blast_Output/
 ```
 
-3. Merge the results and plot the overall biases distribution
+3. Merge the results and plot the overall biases distribution:
 ```
 Rscript mergeBiasesResultsAndPlot.R 
 ```
